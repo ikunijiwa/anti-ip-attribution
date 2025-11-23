@@ -2,6 +2,31 @@
 # anti-ip-attribution quantumultx-domesticsocial.list v0.3.1 d4a828fd5aa22dfc4368311ab0846d3349b8409d
 # https://github.com/SunsetMkt/anti-ip-attribution
 # QuantumultX分流规则，策略组名称为DomesticSocial
+# ==================== 2025抖音隐藏真实IP：评论/主页走代理，视频直连 ====================
+# 触发IP属地的核心API（必须走DomesticSocial，显示代理IP）
+DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial     # 评论/点赞/动态核心
+DOMAIN-SUFFIX,creator.snssdk.com,DomesticSocial   # 创作者中心/发帖
+DOMAIN-SUFFIX,profile.snssdk.com,DomesticSocial   # 个人主页/粉丝
+DOMAIN-SUFFIX,ie_snssdk.com,DomesticSocial        # 互动引擎（点赞/分享）
+DOMAIN-SUFFIX,musically.com,DomesticSocial        # 国际版API（部分重叠）
+DOMAIN,api-h2.amemv.com,DomesticSocial            # gRPC心跳/评论上报
+DOMAIN,aweme-hl.amemv.com,DomesticSocial          # 高光时刻/评论
+DOMAIN,i.snssdk.com,DomesticSocial                # 推荐算法/刷主页
+DOMAIN-SUFFIX,snssdk.com,DomesticSocial           # 兜底：所有snssdk子域（但视频除外）
+
+# 视频流、图片、CDN强制直连（提速+省流量）
+DOMAIN-SUFFIX,aweme.snssdk.com,DIRECT,force-remote-dns  # 视频API直连（需DNS直连防泄漏）
+DOMAIN-SUFFIX,ib.snssdk.com,DIRECT                    # 视频缓冲
+DOMAIN-SUFFIX,p1.douyinvod.com,DIRECT                 # 视频CDN
+DOMAIN-SUFFIX,p2.douyinvod.com,DIRECT
+DOMAIN-SUFFIX,p3.douyinvod.com,DIRECT
+DOMAIN-SUFFIX,ttwstatic.com,DIRECT                    # 静态资源/封面
+DOMAIN-SUFFIX,ttlivecdn.com,DIRECT                    # 直播流
+DOMAIN-SUFFIX,snssdk.com,DIRECT,force-remote-dns      # CDN兜底（视频优先）
+IP-CIDR,43.240.0.0/16,DIRECT                          # 抖音视频IP段（字节跳动CDN）
+IP-CIDR,103.38.0.0/16,DIRECT
+IP-CIDR,123.125.64.0/18,DIRECT
+# ==================== 抖音规则结束 ====================
 DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial 
 DOMAIN,api.bilibili.com,DomesticSocial 
