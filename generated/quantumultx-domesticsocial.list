@@ -2,6 +2,33 @@
 # anti-ip-attribution quantumultx-domesticsocial.list v0.3.1 d4a828fd5aa22dfc4368311ab0846d3349b8409d
 # https://github.com/SunsetMkt/anti-ip-attribution
 # QuantumultX分流规则，策略组名称为DomesticSocial
+# ==================== 2025-11-23 小红书终极真实IP隐藏补丁（必杀版） ====================
+# 触发IP属地的核心API（全部走DomesticSocial，显示代理IP）
+DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial              # 主API（笔记、评论、点赞）
+DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial       # 混合接口（动态上报）
+DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial          # SNS核心（社交互动、属地最关键）
+DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial              # 社交引擎
+DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial          # 编辑器/发帖
+DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial          # 创作者中心（发笔记触发）
+DOMAIN-SUFFIX,www.xiaohongshu.com,DomesticSocial              # 主站/主页刷取
+DOMAIN-SUFFIX,www-api.xiaohongshu.com,DomesticSocial          # Web API（浏览器端）
+DOMAIN-SUFFIX,m.xiaohongshu.com,DomesticSocial                # 移动端兜底
+DOMAIN-SUFFIX,log.xiaohongshu.com,DomesticSocial              # 新增！日志上报（含属地，2025关键漏网）
+DOMAIN-SUFFIX,verify.xiaohongshu.com,DomesticSocial           # 新增！风控验证（含属地）
+DOMAIN-SUFFIX,grpc.xiaohongshu.com,DomesticSocial             # 新增！gRPC心跳（高频上报）
+
+# 图片、视频、笔记内容强制直连（提速+省流量）
+DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT                       # 图片CDN
+DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT                      # 封面/笔记图
+DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT                        # 视频流
+DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT                    # 多媒体
+DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT                      # 通用CDN
+DOMAIN-SUFFIX,static.xiaohongshu.com,DIRECT                   # 静态资源
+
+# 兜底（防止新域名漏网）
+DOMAIN-KEYWORD,xiaohongshu,DomesticSocial
+DOMAIN-SUFFIX,xiaohongshu.com,DomesticSocial
+# ========================================================================================
 DOMAIN-KEYWORD,core-c-lq,DomesticSocial
 DOMAIN-KEYWORD,core-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-c-lq,DomesticSocial
@@ -44,22 +71,7 @@ DOMAIN-SUFFIX,bilibili.com,DomesticSocial
 DOMAIN-SUFFIX,im9.com,DomesticSocial 
 DOMAIN-SUFFIX,acg.tv,DomesticSocial 
 DOMAIN-SUFFIX,biligame.com,DomesticSocial 
-# ===== 小红书 精准分流：评论显示代理IP，图片视频强制直连 =====
-DOMAIN-SUFFIX,www.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial       # 2025 最最最关键的漏网域名！
-DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial      # 创作者中心
-DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial   # 混合接口（很多新请求走这里）
-# 红书图片、视频CDN（强制直连）
-DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT
-DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT
-DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT
-DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT
-DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT
+
 DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial
 DOMAIN-SUFFIX,bilibili.com,DomesticSocial
