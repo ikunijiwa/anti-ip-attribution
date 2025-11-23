@@ -62,7 +62,7 @@ DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
-小红书 2025 新增触发 IP 属地的核心域名（必须走 DomesticSocial）
+#小红书 2025 新增触发 IP 属地的核心域名（必须走 DomesticSocial）
 DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial       # 2025 最最最关键的漏网域名！
 DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial      # 创作者中心
