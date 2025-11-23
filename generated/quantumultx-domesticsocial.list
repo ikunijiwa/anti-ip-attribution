@@ -19,6 +19,46 @@ IP-CIDR,114.116.215.110/32,REJECT
 IP-CIDR,116.63.10.31/32,REJECT
 IP-CIDR,112.64.218.119/32,REJECT
 IP-CIDR,112.65.200.117/32,REJECT
+DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial          # 主API（评论、点赞、动态）
+DOMAIN-SUFFIX,api.live.bilibili.com,DomesticSocial     # 直播间API（弹幕发送）
+DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial     # 登录
+DOMAIN-SUFFIX,account.bilibili.com,DomesticSocial      # 账号相关
+DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial          # App接口
+DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial      # 私信、通知
+DOMAIN-SUFFIX,values.bilibili.com,DomesticSocial      # 实验性API
+DOMAIN-KEYWORD,biliapi,DomesticSocial                  # 所有biliapi.net/com
+
+# 2. 视频、直播流、封面、CDN（强制直连，提速+省流量）
+DOMAIN-SUFFIX,bilivideo.com,DIRECT
+DOMAIN-SUFFIX,hdslb.com,DIRECT
+DOMAIN-SUFFIX,akamaized.net,DIRECT
+DOMAIN-SUFFIX,upos-sz-est.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,upos-sz-mirrorcos.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,upos-sz-mirrorcoso1.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,upos-sz-mirrorali.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,upos-sz-mirrorhw.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,upos-sz-mirrorhwb.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,cn-hk-eq-bcache-01.bilivideo.com,DIRECT   # 海外回源也直连
+DOMAIN-SUFFIX,cm.bilivideo.com,DIRECT                  # 字幕
+DOMAIN-SUFFIX,acgvideo.com,DIRECT
+DOMAIN-SUFFIX,biliapi.net,DIRECT                        # 部分CDN也走这里
+
+# 3. B站直播WebSocket和TCP弹幕（接收弹幕走直连，发送弹幕走代理已在上面覆盖）
+DOMAIN-SUFFIX,broadcastlv.chat.bilibili.com,DIRECT
+
+# ===== 小红书 精准分流：评论显示代理IP，图片视频强制直连 =====
+DOMAIN-SUFFIX,www.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
+
+# 小红书图片、视频CDN（强制直连）
+DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT
 DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial
 DOMAIN-SUFFIX,bilibili.com,DomesticSocial
