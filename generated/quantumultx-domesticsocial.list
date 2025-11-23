@@ -19,6 +19,21 @@ IP-CIDR,114.116.215.110/32,REJECT
 IP-CIDR,116.63.10.31/32,REJECT
 IP-CIDR,112.64.218.119/32,REJECT
 IP-CIDR,112.65.200.117/32,REJECT
+DOMAIN-SUFFIX,bilivideo.com,DIRECT
+DOMAIN-SUFFIX,akamaized.net,DIRECT
+DOMAIN-SUFFIX,hdslb.com,DIRECT
+DOMAIN-SUFFIX,szbdyd.com,DIRECT
+DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net,DIRECT
+DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,biliapi.net,DomesticSocial
+DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial      # 2025 新增 grpc 接口
+DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial      # 反作弊检测
+DOMAIN,httpdns.biliapi.net,REJECT                  # 阻止私有 DNS 泄露
+DOMAIN,httpdns.bilivideo.com,REJECT
 DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial
 DOMAIN-SUFFIX,bilibili.com,DomesticSocial
@@ -75,6 +90,17 @@ DOMAIN-SUFFIX,snssdk.com,DomesticSocial
 DOMAIN-SUFFIX,toutiaoapi.com,DomesticSocial
 DOMAIN-SUFFIX,gifshow.com,DomesticSocial
 DOMAIN-SUFFIX,ksapisrv.com,DomesticSocial
+DOMAIN-SUFFIX,edith.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,edith-global.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,xhscdn.com,DIRECT
+DOMAIN-SUFFIX,xhsdv.com,DIRECT
+DOMAIN-SUFFIX,byteimg.com,DIRECT
+DOMAIN-SUFFIX,douyinpic.com,DIRECT
+DOMAIN-SUFFIX,douyinvod.com,DIRECT
+DOMAIN-SUFFIX,music.126.net,DIRECT
+DOMAIN-SUFFIX,v1.music.126.net,DIRECT
+DOMAIN-KEYWORD,aweme,DomesticSocial                # 笔记/评论关键接口
+DOMAIN-SUFFIX,snssdk.com,DomesticSocial
 DOMAIN-SUFFIX,xiaohongshu.com,DomesticSocial
 DOMAIN-KEYWORD,xiaohongshu,DomesticSocial
 IP-CIDR,114.55.236.88/32,DomesticSocial
@@ -171,6 +197,10 @@ DOMAIN,api.vip.miui.com,DomesticSocial
 DOMAIN-SUFFIX,music.163.com,DomesticSocial
 DOMAIN,nstool.netease.com,DomesticSocial
 DOMAIN,wanproxy.127.net,DomesticSocial
+DOMAIN,interface3.music.163.com,DomesticSocial
+DOMAIN,music.httpdns.c.163.com,DomesticSocial
+DOMAIN-SUFFIX,crash.music.163.com,REJECT
+DOMAIN-SUFFIX,crash.163.com,REJECT
 DOMAIN,mam.netease.com,DomesticSocial
 DOMAIN,dt.netease.im,DomesticSocial
 DOMAIN,api.iplay.163.com,DomesticSocial
