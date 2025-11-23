@@ -21,6 +21,13 @@ DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial        # 风控验证（含属地
 DOMAIN-SUFFIX,amemv.com,DomesticSocial
 DOMAIN-SUFFIX,snssdk.com,DomesticSocial
 DOMAIN-SUFFIX,douyin.com,DomesticSocial
+DOMAIN-SUFFIX,p1.douyinvod.com,DIRECT
+DOMAIN-SUFFIX,p2.douyinvod.com,DIRECT
+DOMAIN-SUFFIX,p3.douyinvod.com,DIRECT
+DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
+DOMAIN-SUFFIX,vod.douyinvod.com,DIRECT
+DOMAIN-SUFFIX,bytecdn.cn,DIRECT
+DOMAIN-SUFFIX,ixigua.com,DIRECT
 # ==================== 抖音规则结束 ====================
 DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial 
