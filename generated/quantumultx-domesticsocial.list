@@ -2,60 +2,21 @@
 # anti-ip-attribution quantumultx-domesticsocial.list v0.3.1 d4a828fd5aa22dfc4368311ab0846d3349b8409d
 # https://github.com/SunsetMkt/anti-ip-attribution
 # QuantumultX分流规则，策略组名称为DomesticSocial
-DOMAIN,httpdns.bilivideo.com,REJECT
-IP-CIDR,47.101.175.206/32,REJECT
-IP-CIDR,47.100.123.169/32,REJECT
-IP-CIDR,120.46.169.234/32,REJECT
-IP-CIDR,121.36.72.124/32,REJECT
-IP-CIDR,116.63.10.135/32,REJECT
-IP-CIDR,122.9.7.134/32,REJECT
-IP-CIDR,117.185.228.108/32,REJECT
-IP-CIDR,117.144.238.29/32,REJECT
-IP-CIDR,122.9.13.79/32,REJECT
-IP-CIDR,122.9.15.129/32,REJECT
-IP-CIDR,101.91.140.224/32,REJECT
-IP-CIDR,101.91.140.124/32,REJECT
-IP-CIDR,114.116.215.110/32,REJECT
-IP-CIDR,116.63.10.31/32,REJECT
-IP-CIDR,112.64.218.119/32,REJECT
-IP-CIDR,112.65.200.117/32,REJECT
-# Bilibili 2025 新增触发 IP 属地的核心域名（必须走 DomesticSocial）
-DOMAIN-SUFFIX,api.vc.bilibili.com,DomesticSocial          # 2025 最关键漏网域名
-DOMAIN-SUFFIX,member.bilibili.com,DomesticSocial          # 新增会员/空间接口
-DOMAIN-SUFFIX,space.bilibili.com,DomesticSocial           # 个人空间触发属地
-DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial            # gRPC 请求（很多新版 App 用这个）
-DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial             # 很多新接口移到了这里
-DOMAIN-SUFFIX,values.bilibili.com,DomesticSocial          # 实验性/灰度接口
-DOMAIN-KEYWORD,biliAPI,DomesticSocial                     # 防止大小写漏网
-# Bilibili 新增 CDN/视频流域名（强制直连，提速+省流量）
-DOMAIN-SUFFIX,bvcupcdnib.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-est.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorcoso1.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,cn-hk-eq-bcache-01.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial          # 主API（评论、点赞、动态）
-DOMAIN-SUFFIX,api.live.bilibili.com,DomesticSocial     # 直播间API（弹幕发送）
-DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial     # 登录
-DOMAIN-SUFFIX,account.bilibili.com,DomesticSocial      # 账号相关
-DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial          # App接口
-DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial      # 私信、通知
-DOMAIN-SUFFIX,values.bilibili.com,DomesticSocial      # 实验性API
-DOMAIN-KEYWORD,biliapi,DomesticSocial                  # 所有biliapi.net/com
-# 2. 视频、直播流、封面、CDN（强制直连，提速+省流量）
-DOMAIN-SUFFIX,bilivideo.com,DIRECT
-DOMAIN-SUFFIX,hdslb.com,DIRECT
-DOMAIN-SUFFIX,akamaized.net,DIRECT
-DOMAIN-SUFFIX,upos-sz-est.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorcos.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorcoso1.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorali.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorhw.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorhwb.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,cn-hk-eq-bcache-01.bilivideo.com,DIRECT   # 海外回源也直连
-DOMAIN-SUFFIX,cm.bilivideo.com,DIRECT                  # 字幕
-DOMAIN-SUFFIX,acgvideo.com,DIRECT
-DOMAIN-SUFFIX,biliapi.net,DIRECT                        # 部分CDN也走这里
-# 3. B站直播WebSocket和TCP弹幕（接收弹幕走直连，发送弹幕走代理已在上面覆盖）
-DOMAIN-SUFFIX,broadcastlv.chat.bilibili.com,DIRECT
+DOMAIN-SUFFIX,biliapi.net,DomesticSocial
+DOMAIN-SUFFIX,biliapi.com,DomesticSocial 
+DOMAIN,api.bilibili.com,DomesticSocial 
+DOMAIN,api.bilibili.tv,DomesticSocial 
+DOMAIN,app.bilibili.com,DomesticSocial 
+DOMAIN,api.live.bilibili.com,DomesticSocial 
+DOMAIN,api.vc.bilibili.com,DomesticSocial 
+DOMAIN,passport.bilibili.com,DomesticSocial 
+DOMAIN,live-trace.bilibili.com,DomesticSocial 
+DOMAIN,message.bilibili.com,DomesticSocial 
+DOMAIN,cm.bilibili.com,DomesticSocial 
+DOMAIN-SUFFIX,bilibili.com,DomesticSocial 
+DOMAIN-SUFFIX,im9.com,DomesticSocial 
+DOMAIN-SUFFIX,acg.tv,DomesticSocial 
+DOMAIN-SUFFIX,biligame.com,DomesticSocial 
 # ===== 小红书 精准分流：评论显示代理IP，图片视频强制直连 =====
 DOMAIN-SUFFIX,www.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
