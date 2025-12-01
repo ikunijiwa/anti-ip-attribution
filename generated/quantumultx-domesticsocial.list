@@ -3,23 +3,38 @@
 # https://github.com/SunsetMkt/anti-ip-attribution
 # QuantumultX分流规则，策略组名称为DomesticSocial
 # ==================== 2025-11-23 小红书终极真实IP隐藏补丁（必杀版） ====================
-# 触发IP属地的核心API（全部走DomesticSocial，显示代理IP）
-DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial          # 新增grpc评论API
-DOMAIN-SUFFIX,app.biliapi.net,DomesticSocial           # App内属地上报
-DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial          # 阿里云反作弊检测
-DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 阿里云上报
-DOMAIN,httpdns.biliapi.net,REJECT                      # 阻止备用DNS泄露
-DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT           # 新httpdns
+# 触发IP属地的           # 新httpdns
+DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial     # App 主页/动态/评论 API（关键！）
+DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial     # 网页/动态 API
+DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial # 登录/评论认证
+DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial  # 评论/消息 IP 上报
+DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial    # 数据同步/属地检测
 
-# —— 抖音补丁（覆盖aweme+httpdns+备用链路） ——
-DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial          # 笔记/评论核心API
-DOMAIN-SUFFIX,api.amemv.com,DomesticSocial             # 备用amemv API
-DOMAIN-SUFFIX,bytegecko.com,DomesticSocial             # 抖音搜索/动态IP
-DOMAIN,music.httpdns.c.163.com,DomesticSocial          # httpdns（抖音共享）
-DOMAIN-SUFFIX,httpdns.c.byte,DomesticSocial            # 字节跳动DNS
-DOMAIN-SUFFIX,ttlivecdn.com,DomesticSocial             # 直播/评论检测
-DOMAIN-KEYWORD,aweme,DomesticSocial                    # 兜底aweme系列
-DOMAIN-KEYWORD,normal-lq,DomesticSocial                # 增强normal系列
+# 2025.12 新增链路（grpc + 反作弊）
+DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial     # gRPC 评论/动态
+DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial     # 阿里云反作弊上报
+DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 外部检测
+
+# 阻止 DNS 泄露（无路径问题）
+DOMAIN,httpdns.biliapi.net,REJECT
+DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
+DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial    # 主页/动态核心（关键！）
+DOMAIN-SUFFIX,api.amemv.com,DomesticSocial       # App动态上报
+DOMAIN-SUFFIX,bytegecko.com,DomesticSocial       # 搜索/动态IP
+
+# 评论/消息IP检测API（aweme/v1/comment + sso.douyin.com走代理）
+DOMAIN-SUFFIX,sso.douyin.com,DomesticSocial      # 登录/评论认证
+DOMAIN-SUFFIX,www.douyin.com,DomesticSocial      # 网页评论/动态
+DOMAIN-SUFFIX,snssdk.com,DomesticSocial          # 抖音系备用API
+
+# 2025.12新链路（grpc + 反作弊，评论时必走）
+DOMAIN-KEYWORD,aweme-grpc,DomesticSocial         # gRPC 评论/动态
+DOMAIN-SUFFIX,apm.douyin.com,DomesticSocial      # 字节云反作弊上报
+DOMAIN-SUFFIX,arms-retcode.byteoversea.com,DomesticSocial # 外部检测
+
+# 阻止httpdns泄露（关键！防止备用DNS直连）
+DOMAIN-SUFFIX,httpdns.c.byte,DomesticSocial      # 字节httpdns
+DOMAIN,httpdns.douyin.com,REJEC
 
 DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial              # 主API（笔记、评论、点赞）
 DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial       # 混合接口（动态上报）
