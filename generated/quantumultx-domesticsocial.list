@@ -6,7 +6,6 @@
 # 触发IP属地的核心API（全部走DomesticSocial，显示代理IP）
 DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial          # 新增grpc评论API
 DOMAIN-SUFFIX,app.biliapi.net,DomesticSocial           # App内属地上报
-DOMAIN,app.bilibili.com/x/v2/account/mine,DomesticSocial    # 评论/动态IP
 DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial          # 阿里云反作弊检测
 DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 阿里云上报
 DOMAIN,httpdns.biliapi.net,REJECT                      # 阻止备用DNS泄露
