@@ -4,6 +4,25 @@
 # QuantumultX分流规则，策略组名称为DomesticSocial
 # ==================== 2025-11-23 小红书终极真实IP隐藏补丁（必杀版） ====================
 # 触发IP属地的核心API（全部走DomesticSocial，显示代理IP）
+DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial          # 新增grpc评论API
+DOMAIN-SUFFIX,app.biliapi.net,DomesticSocial           # App内属地上报
+DOMAIN,app.bilibili.com/x/v2/account/myinfo,DomesticSocial  # 个人主页IP
+DOMAIN,app.bilibili.com/x/v2/account/mine,DomesticSocial    # 评论/动态IP
+DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial          # 阿里云反作弊检测
+DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 阿里云上报
+DOMAIN,httpdns.biliapi.net,REJECT                      # 阻止备用DNS泄露
+DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT           # 新httpdns
+
+# —— 抖音补丁（覆盖aweme+httpdns+备用链路） ——
+DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial          # 笔记/评论核心API
+DOMAIN-SUFFIX,api.amemv.com,DomesticSocial             # 备用amemv API
+DOMAIN-SUFFIX,bytegecko.com,DomesticSocial             # 抖音搜索/动态IP
+DOMAIN,music.httpdns.c.163.com,DomesticSocial          # httpdns（抖音共享）
+DOMAIN-SUFFIX,httpdns.c.byte,DomesticSocial            # 字节跳动DNS
+DOMAIN-SUFFIX,ttlivecdn.com,DomesticSocial             # 直播/评论检测
+DOMAIN-KEYWORD,aweme,DomesticSocial                    # 兜底aweme系列
+DOMAIN-KEYWORD,normal-lq,DomesticSocial                # 增强normal系列
+
 DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial              # 主API（笔记、评论、点赞）
 DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial       # 混合接口（动态上报）
 DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial          # SNS核心（社交互动、属地最关键）
