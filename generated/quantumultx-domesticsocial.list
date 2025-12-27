@@ -63,22 +63,25 @@ DOMAIN-KEYWORD,normal-c-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-lq,DomesticSocial
 DOMAIN-KEYWORD,search-quic-lq,DomesticSocial
 DOMAIN-KEYWORD,search-lq,DomesticSocial
-DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial         # 新的日志上报（含属地）
+DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial # 新的日志上报（含属地）
 DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial           # 新版 IES 引擎（推荐/同城）
-DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial          # 高频心跳（含属地）
+DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial # 新版 IES 引擎（推荐/同城）
+DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial # 高频心跳（含属地）
 DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial        # 风控验证（含属地）
+DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial # 风控验证（含属地）
 DOMAIN-SUFFIX,amemv.com,DomesticSocial
 DOMAIN-SUFFIX,snssdk.com,DomesticSocial
 DOMAIN-SUFFIX,douyin.com,DomesticSocial
-DOMAIN-SUFFIX,p1.douyinvod.com,DIRECT
-DOMAIN-SUFFIX,p2.douyinvod.com,DIRECT
-DOMAIN-SUFFIX,p3.douyinvod.com,DIRECT
-DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
-DOMAIN-SUFFIX,vod.douyinvod.com,DIRECT
-DOMAIN-SUFFIX,bytecdn.cn,DIRECT
+DOMAIN-SUFFIX,douyinvod.com,DIRECT
+DOMAIN-SUFFIX,douyincdn.com,DIRECT
+DOMAIN-SUFFIX,douyinpic.com,DIRECT
+DOMAIN-SUFFIX,douyinstatic.com,DIRECT
+DOMAIN-SUFFIX,idouyinvod.com,DIRECT
 DOMAIN-SUFFIX,ixigua.com,DIRECT
+DOMAIN-SUFFIX,ixiguavideo.com,DIRECT
+DOMAIN-SUFFIX,pstatp.com,DIRECT
+DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
+DOMAIN-SUFFIX,bytecdn.cn,DIRECT
 # ==================== 抖音规则结束 
 DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial 
