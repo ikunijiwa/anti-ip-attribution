@@ -47,24 +47,25 @@ DOMAIN-SUFFIX,snssdk.com,DomesticSocial # 恢复广义代理，确保覆盖
 DOMAIN-SUFFIX,amemv.com,DomesticSocial # 恢复广义
 DOMAIN-SUFFIX,douyin.com,DomesticSocial # 恢复广义，主域上报
 #==================== Bilibili规则（修复IP隐藏 + 直播优化） ====================
-DOMAIN-SUFFIX,bilivideo.com,DIRECT # 视频/直播CDN优先
+DOMAIN-SUFFIX,bilivideo.com,DIRECT # 视频/直播流优先直连
 DOMAIN-SUFFIX,hdslb.com,DIRECT
 DOMAIN-SUFFIX,akamaized.net,DIRECT
 DOMAIN-SUFFIX,szbdyd.com,DIRECT
-DOMAIN-SUFFIX,upos-sz-mirrorhw.bilivideo.com,DIRECT # 直播镜像
-DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial
-DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial
-DOMAIN-SUFFIX,live-trace.bilibili.com,DomesticSocial
-DOMAIN-SUFFIX,api.live.bilibili.com,DomesticSocial # 直播心跳/上报（必要隐藏IP）
+DOMAIN-SUFFIX,upos-sz-mirrorhw.bilivideo.com,DIRECT
+DOMAIN-SUFFIX,api.live.bilibili.com,DIRECT # 直连直播API，心跳/弹幕低延迟（优化卡顿关键）
+DOMAIN-SUFFIX,live-trace.bilibili.com,DIRECT # 直连直播追踪上报，减少延迟
+DOMAIN-SUFFIX,live.bilibili.com,DIRECT # 直播页面/相关（若有流量）
+DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial # App评论/动态API（关键隐藏）
+DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial # 网页/评论API
+DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial # 登录/认证
+DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial # 消息/评论上报
+DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial # 数据/属地检测
+DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial # gRPC动态/评论
+DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial # 反作弊上报
+DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 外部检测
 DOMAIN,httpdns.biliapi.net,REJECT
 DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
-DOMAIN-SUFFIX,bilibili.com,DomesticSocial # 恢复广义代理，确保评论/动态隐藏
+DOMAIN-SUFFIX,bilibili.com,DomesticSocial # 广义代理覆盖剩余上报（直播子域已优先直连）
 #==================== 小红书规则（修复IP隐藏） ====================
 DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT # 图片/视频CDN优先
 DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT
