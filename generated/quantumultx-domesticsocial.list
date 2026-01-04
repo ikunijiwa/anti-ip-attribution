@@ -63,15 +63,16 @@ DOMAIN-KEYWORD,normal-c-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-lq,DomesticSocial
 DOMAIN-KEYWORD,search-quic-lq,DomesticSocial
 DOMAIN-KEYWORD,search-lq,DomesticSocial
+DOMAIN-SUFFIX,zijieapi.com,DomesticSocial # 评论提交核心API（新增，防止IP泄露）
 DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial # 新的日志上报（含属地）
-DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial # 新版 IES 引擎（推荐/同城）
+DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial # 日志上报
+DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial # 新版 IES 引擎（推荐/同城，含位置相关）
 DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial # 高频心跳（含属地）
-DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial
+DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial # 高频心跳（含属地）
 DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial # 风控验证（含属地）
-DOMAIN-SUFFIX,amemv.com,DomesticSocial
-DOMAIN-SUFFIX,snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,douyin.com,DomesticSocial
+DOMAIN-SUFFIX,amemv.com,DIRECT # 调整为直连，非IP核心
+DOMAIN-SUFFIX,snssdk.com,DIRECT # 调整为直连，非IP核心
+DOMAIN-SUFFIX,douyin.com,DIRECT # 调整为直连，非IP核心（子域如ies.douyin.com已在上方代理）
 DOMAIN-SUFFIX,douyinvod.com,DIRECT
 DOMAIN-SUFFIX,douyincdn.com,DIRECT
 DOMAIN-SUFFIX,douyinpic.com,DIRECT
