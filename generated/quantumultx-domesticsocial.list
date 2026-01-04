@@ -63,23 +63,27 @@ DOMAIN-KEYWORD,normal-c-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-lq,DomesticSocial
 DOMAIN-KEYWORD,search-quic-lq,DomesticSocial
 DOMAIN-KEYWORD,search-lq,DomesticSocial
-DOMAIN-KEYWORD,api-,DomesticSocial # 覆盖API请求（含评论提交，可能分散到api.*.douyin.com等）
-DOMAIN-KEYWORD,mon-,DomesticSocial # 监控/日志上报（mon.zijieapi.com等）
-DOMAIN-KEYWORD,zijie,DomesticSocial # 字节API/统计（zijieapi.com，含互动位置数据）
-DOMAIN-KEYWORD,log,DomesticSocial # 日志上报路径
-DOMAIN-KEYWORD,verify,DomesticSocial # 验证路径
-DOMAIN-KEYWORD,lf-hl,DomesticSocial # 心跳路径
-DOMAIN-KEYWORD,ies,DomesticSocial # IES引擎路径
-DOMAIN-SUFFIX,zijieapi.com,DomesticSocial # 评论/监控核心
-DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial # 新日志上报（含属地）
-DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial # 日志上报
-DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial # IES引擎（推荐/同城，含位置）
-DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial # 高频心跳（含属地）
-DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial # 高频心跳（含属地）
-DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial # 风控验证（含属地）
-DOMAIN-SUFFIX,amemv.com,DIRECT # 调整直连，避免视频/feed卡顿
-DOMAIN-SUFFIX,snssdk.com,DIRECT # 调整直连，核心但含媒体
-DOMAIN-SUFFIX,douyin.com,DIRECT # 调整直连，主域含多流量
+DOMAIN-KEYWORD,-normal-,DomesticSocial # 新增：针对-normal-路径（位置上报关键，隐藏IP核心）
+DOMAIN-KEYWORD,-core-,DomesticSocial # 新增：覆盖-core-路径（API上报）
+DOMAIN-KEYWORD,-aweme-,DomesticSocial # 新增：覆盖aweme相关互动/上报
+DOMAIN-KEYWORD,api-,DomesticSocial
+DOMAIN-KEYWORD,mon-,DomesticSocial
+DOMAIN-KEYWORD,zijie,DomesticSocial
+DOMAIN-KEYWORD,log,DomesticSocial
+DOMAIN-KEYWORD,verify,DomesticSocial
+DOMAIN-KEYWORD,lf-hl,DomesticSocial
+DOMAIN-KEYWORD,ies,DomesticSocial
+DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial # 新增：抖音核心API（评论提交/位置上报）
+DOMAIN-SUFFIX,zijieapi.com,DomesticSocial
+DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial
+DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial
+DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial
+DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial
+DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial
+DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial
+DOMAIN-SUFFIX,amemv.com,DIRECT
+DOMAIN-SUFFIX,snssdk.com,DIRECT
+DOMAIN-SUFFIX,douyin.com,DIRECT
 DOMAIN-SUFFIX,douyinvod.com,DIRECT
 DOMAIN-SUFFIX,douyincdn.com,DIRECT
 DOMAIN-SUFFIX,douyinpic.com,DIRECT
@@ -87,7 +91,7 @@ DOMAIN-SUFFIX,douyinstatic.com,DIRECT
 DOMAIN-SUFFIX,idouyinvod.com,DIRECT
 DOMAIN-SUFFIX,ixigua.com,DIRECT
 DOMAIN-SUFFIX,ixiguavideo.com,DIRECT
-DOMAIN-SUFFIX,pstatp.com,DIRECT # 可能含跟踪，但直连优化速度
+DOMAIN-SUFFIX,pstatp.com,DIRECT
 DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
 DOMAIN-SUFFIX,bytecdn.cn,DIRECT
 # ==================== 抖音规则结束 
