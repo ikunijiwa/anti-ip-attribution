@@ -1,89 +1,38 @@
-# 针对部分网站显示IP归属地的分流规则
-# anti-ip-attribution quantumultx-domesticsocial.list v0.3.1 d4a828fd5aa22dfc4368311ab0846d3349b8409d
-# https://github.com/SunsetMkt/anti-ip-attribution
-# QuantumultX分流规则，策略组名称为DomesticSocial
-# ==================== 2025-11-23 小红书终极真实IP隐藏补丁（必杀版） ====================
-# 触发IP属地的           # 新httpdns
-DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial     # App 主页/动态/评论 API（关键！）
-DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial     # 网页/动态 API
-DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial # 登录/评论认证
-DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial  # 评论/消息 IP 上报
-DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial    # 数据同步/属地检测
-
-# 2025.12 新增链路（grpc + 反作弊）
-DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial     # gRPC 评论/动态
-DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial     # 阿里云反作弊上报
-DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 外部检测
-
-# 阻止 DNS 泄露（无路径问题）
-DOMAIN,httpdns.biliapi.net,REJECT
-DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
-DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial    # 主页/动态核心（关键！）
-DOMAIN-SUFFIX,api.amemv.com,DomesticSocial       # App动态上报
-DOMAIN-SUFFIX,bytegecko.com,DomesticSocial       # 搜索/动态IP
-
-# 评论/消息IP检测API（aweme/v1/comment + sso.douyin.com走代理）
-DOMAIN-SUFFIX,sso.douyin.com,DomesticSocial      # 登录/评论认证
-DOMAIN-SUFFIX,www.douyin.com,DomesticSocial      # 网页评论/动态
-DOMAIN-SUFFIX,snssdk.com,DomesticSocial          # 抖音系备用API
-
-# 2025.12新链路（grpc + 反作弊，评论时必走）
-DOMAIN-KEYWORD,aweme-grpc,DomesticSocial         # gRPC 评论/动态
-DOMAIN-SUFFIX,apm.douyin.com,DomesticSocial      # 字节云反作弊上报
-DOMAIN-SUFFIX,arms-retcode.byteoversea.com,DomesticSocial # 外部检测
-
-# 阻止httpdns泄露（关键！防止备用DNS直连）
-DOMAIN-SUFFIX,httpdns.c.byte,DomesticSocial      # 字节httpdns
-DOMAIN,httpdns.douyin.com,REJEC
-
-DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial              # 主API（笔记、评论、点赞）
-DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial       # 混合接口（动态上报）
-DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial          # SNS核心（社交互动、属地最关键）
-DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial              # 社交引擎
-DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial          # 编辑器/发帖
-DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial          # 创作者中心（发笔记触发）
-DOMAIN-SUFFIX,www.xiaohongshu.com,DomesticSocial              # 主站/主页刷取
-DOMAIN-SUFFIX,www-api.xiaohongshu.com,DomesticSocial          # Web API（浏览器端）
-DOMAIN-SUFFIX,m.xiaohongshu.com,DomesticSocial                # 移动端兜底
-DOMAIN-SUFFIX,log.xiaohongshu.com,DomesticSocial              # 新增！日志上报（含属地，2025关键漏网）
-DOMAIN-SUFFIX,verify.xiaohongshu.com,DomesticSocial           # 新增！风控验证（含属地）
-DOMAIN-SUFFIX,grpc.xiaohongshu.com,DomesticSocial             # 新增！gRPC心跳（高频上报）
-DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT                       # 图片CDN
-DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT                      # 封面/笔记图
-DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT                        # 视频流
-DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT                    # 多媒体
-DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT                      # 通用CDN
-DOMAIN-SUFFIX,static.xiaohongshu.com,DIRECT                   # 静态资源
-DOMAIN-KEYWORD,xiaohongshu,DomesticSocial
-DOMAIN-SUFFIX,xiaohongshu.com,DomesticSocial
-# ========================================================================================
+#==================== 抖音规则 ====================
 DOMAIN-KEYWORD,core-c-lq,DomesticSocial
 DOMAIN-KEYWORD,core-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-c-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-lq,DomesticSocial
 DOMAIN-KEYWORD,search-quic-lq,DomesticSocial
 DOMAIN-KEYWORD,search-lq,DomesticSocial
-DOMAIN-KEYWORD,-normal-,DomesticSocial # 新增：针对-normal-路径（位置上报关键，隐藏IP核心）
-DOMAIN-KEYWORD,-core-,DomesticSocial # 新增：覆盖-core-路径（API上报）
-DOMAIN-KEYWORD,-aweme-,DomesticSocial # 新增：覆盖aweme相关互动/上报
-DOMAIN-KEYWORD,api-,DomesticSocial
-DOMAIN-KEYWORD,mon-,DomesticSocial
-DOMAIN-KEYWORD,zijie,DomesticSocial
-DOMAIN-KEYWORD,log,DomesticSocial
-DOMAIN-KEYWORD,verify,DomesticSocial
-DOMAIN-KEYWORD,lf-hl,DomesticSocial
-DOMAIN-KEYWORD,ies,DomesticSocial
-DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial # 新增：抖音核心API（评论提交/位置上报）
-DOMAIN-SUFFIX,zijieapi.com,DomesticSocial
-DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial
-DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial
-DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,amemv.com,DIRECT
-DOMAIN-SUFFIX,snssdk.com,DIRECT
-DOMAIN-SUFFIX,douyin.com,DIRECT
+DOMAIN-KEYWORD,-normal-,DomesticSocial # 位置上报路径
+DOMAIN-KEYWORD,-core-,DomesticSocial # API上报路径
+DOMAIN-KEYWORD,-aweme-,DomesticSocial # 互动/评论上报
+DOMAIN-KEYWORD,api-,DomesticSocial # API请求
+DOMAIN-KEYWORD,mon-,DomesticSocial # 监控/日志
+DOMAIN-KEYWORD,zijie,DomesticSocial # 字节统计
+DOMAIN-KEYWORD,log,DomesticSocial # 日志路径
+DOMAIN-KEYWORD,verify,DomesticSocial # 验证路径
+DOMAIN-KEYWORD,lf-hl,DomesticSocial # 心跳路径
+DOMAIN-KEYWORD,ies,DomesticSocial # IES引擎
+DOMAIN-KEYWORD,aweme-grpc,DomesticSocial # gRPC评论/动态
+DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial # 核心API（评论/位置上报，关键）
+DOMAIN-SUFFIX,zijieapi.com,DomesticSocial # 监控上报
+DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial # 日志（含属地）
+DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial # 日志
+DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial # 推荐/同城
+DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial # 心跳（含属地）
+DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial # 心跳（含属地）
+DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial # 风控（含属地）
+DOMAIN-SUFFIX,sso.douyin.com,DomesticSocial # 登录/评论认证
+DOMAIN-SUFFIX,apm.douyin.com,DomesticSocial # 反作弊上报
+DOMAIN-SUFFIX,arms-retcode.byteoversea.com,DomesticSocial # 外部检测
+DOMAIN-SUFFIX,bytegecko.com,DomesticSocial # 搜索/动态IP
+DOMAIN-SUFFIX,httpdns.c.byte,DomesticSocial # 防止DNS泄露
+DOMAIN,httpdns.douyin.com,REJECT # DNS泄露阻止
+DOMAIN-SUFFIX,amemv.com,DIRECT # 直连，避免feed卡顿
+DOMAIN-SUFFIX,snssdk.com,DIRECT # 直连，非核心
+DOMAIN-SUFFIX,douyin.com,DIRECT # 直连，主流量
 DOMAIN-SUFFIX,douyinvod.com,DIRECT
 DOMAIN-SUFFIX,douyincdn.com,DIRECT
 DOMAIN-SUFFIX,douyinpic.com,DIRECT
@@ -94,141 +43,70 @@ DOMAIN-SUFFIX,ixiguavideo.com,DIRECT
 DOMAIN-SUFFIX,pstatp.com,DIRECT
 DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
 DOMAIN-SUFFIX,bytecdn.cn,DIRECT
-# ==================== 抖音规则结束 
-DOMAIN-SUFFIX,biliapi.net,DomesticSocial
-DOMAIN-SUFFIX,biliapi.com,DomesticSocial 
-DOMAIN,api.bilibili.com,DomesticSocial 
-DOMAIN,api.bilibili.tv,DomesticSocial 
-DOMAIN,app.bilibili.com,DomesticSocial 
-DOMAIN,api.live.bilibili.com,DomesticSocial 
-DOMAIN,api.vc.bilibili.com,DomesticSocial 
-DOMAIN,passport.bilibili.com,DomesticSocial 
-DOMAIN,live-trace.bilibili.com,DomesticSocial 
-DOMAIN,message.bilibili.com,DomesticSocial 
-DOMAIN,cm.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,im9.com,DomesticSocial 
-DOMAIN-SUFFIX,acg.tv,DomesticSocial 
-DOMAIN-SUFFIX,biligame.com,DomesticSocial 
-DOMAIN-SUFFIX,biliapi.net,DomesticSocial
-DOMAIN-SUFFIX,biliapi.com,DomesticSocial
-DOMAIN-SUFFIX,bilibili.com,DomesticSocial
-IP-CIDR,203.107.1.0/24,DomesticSocial
-DOMAIN-SUFFIX,bilivideo.com,DIRECT
-DOMAIN-SUFFIX,akamaized.net,DIRECT
-DOMAIN-SUFFIX,hdslb.com,DIRECT
-DOMAIN-SUFFIX,szbdyd.com,DIRECT
-DOMAIN-SUFFIX,weibo.cn,DomesticSocial
+#==================== Bilibili规则（优化直播/视频速度） ====================
+DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial # App主页/动态/评论API（关键）
+DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial # 网页/动态API
+DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial # 登录/评论认证
+DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial # 评论/消息上报
+DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial # 数据/属地检测
+DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial # gRPC评论/动态
+DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial # 反作弊上报
+DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial # 外部检测
+DOMAIN-SUFFIX,live-trace.bilibili.com,DomesticSocial # 直播追踪/上报（含属地）
+DOMAIN-SUFFIX,api.live.bilibili.com,DomesticSocial # 直播API（弹幕/心跳，必要代理隐藏IP）
+DOMAIN,httpdns.biliapi.net,REJECT # DNS泄露阻止
+DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
+DOMAIN-SUFFIX,bilivideo.com,DIRECT # 视频/直播CDN
+DOMAIN-SUFFIX,hdslb.com,DIRECT # 视频/直播CDN
+DOMAIN-SUFFIX,akamaized.net,DIRECT # CDN
+DOMAIN-SUFFIX,szbdyd.com,DIRECT # CDN
+DOMAIN-SUFFIX,upos-sz-mirrorhw.bilivideo.com,DIRECT # 常见直播镜像（若有新增可补）
+DOMAIN-SUFFIX,bilibili.com,DIRECT # 移除广义代理，直连优化速度（子域已精准覆盖）
+#==================== 小红书规则 ====================
+DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,www-api.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,log.xiaohongshu.com,DomesticSocial # 日志（含属地）
+DOMAIN-SUFFIX,verify.xiaohongshu.com,DomesticSocial # 风控
+DOMAIN-SUFFIX,grpc.xiaohongshu.com,DomesticSocial # gRPC心跳
+DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT # 图片CDN
+DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT # 视频
+DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,static.xiaohongshu.com,DIRECT
+#==================== 其他App规则（清理重复，保留必要） ====================
 DOMAIN-SUFFIX,weibo.com,DomesticSocial
-DOMAIN-SUFFIX,weibocdn.com,DomesticSocial
-DOMAIN-SUFFIX,wbimg.cn,DomesticSocial
-DOMAIN-SUFFIX,wbimg.com,DomesticSocial
-DOMAIN-SUFFIX,sinaimg.cn,DomesticSocial
-DOMAIN-KEYWORD,weibo,DomesticSocial
+DOMAIN-SUFFIX,weibo.cn,DomesticSocial
+DOMAIN-SUFFIX,weibocdn.com,DIRECT
+DOMAIN-SUFFIX,sinaimg.cn,DIRECT
 DOMAIN,tieba.baidu.com,DomesticSocial
-DOMAIN,tbmsg.baidu.com,DomesticSocial
-DOMAIN,tb5.bdstatic.com,DomesticSocial
-DOMAIN,fclog.baidu.com,DomesticSocial
-DOMAIN,gsp0.baidu.com,DomesticSocial
 DOMAIN,hm.baidu.com,DomesticSocial
-DOMAIN,www.baidu.com,DomesticSocial
-DOMAIN,tiebac.baidu.com,DomesticSocial
-IP-CIDR,180.76.76.0/24,DomesticSocial
-DOMAIN,httpsdns.baidu.com,DomesticSocial
-DOMAIN,c.tieba.baidu.com,DomesticSocial
 DOMAIN,httpdns.baidu.com,DomesticSocial
-DOMAIN,httpdns.baidubce.com,DomesticSocial
-DOMAIN,szshort.weixin.qq.com,DomesticSocial
-DOMAIN,szextshort.weixin.qq.com,DomesticSocial
-DOMAIN,szminorshort.weixin.qq.com,DomesticSocial
-DOMAIN,mp.weixin.qq.com,DomesticSocial
 DOMAIN-SUFFIX,zhihu.com,DomesticSocial
-IP-CIDR,103.41.167.0/24,DomesticSocial
-IP-CIDR,118.89.204.198/23,REJECT
-IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/40,REJECT
 DOMAIN-SUFFIX,toutiaoapi.com,DomesticSocial
-DOMAIN-SUFFIX,gifshow.com,DomesticSocial
-DOMAIN-SUFFIX,ksapisrv.com,DomesticSocial
-DOMAIN,keylol.com,DomesticSocial
-DOMAIN-SUFFIX,ixigua.com,DomesticSocial
-DOMAIN,www.wenshushu.cn,DomesticSocial
-IP-CIDR,119.29.29.98/32,REJECT
-IP-CIDR,120.53.130.158/32,DomesticSocial
-DOMAIN,frodo.douban.com,DomesticSocial
-DOMAIN,www.douban.com,DomesticSocial
-DOMAIN,api.coolapk.com,DomesticSocial
-DOMAIN,api2.coolapk.com,DomesticSocial
-DOMAIN,api.taptapdada.com,DomesticSocial
-DOMAIN,god.gameyw.netease.com,DomesticSocial
-DOMAIN-SUFFIX,huya.com,DomesticSocial
-DOMAIN-SUFFIX,dongqiudi.com,DomesticSocial
-DOMAIN,ngabbs.com,DomesticSocial
-DOMAIN,bbs.nga.cn,DomesticSocial
-DOMAIN,nga.178.com,DomesticSocial
-DOMAIN,api.vip.miui.com,DomesticSocial
-DOMAIN-SUFFIX,music.163.com,DomesticSocial
-DOMAIN,nstool.netease.com,DomesticSocial
-DOMAIN,wanproxy.127.net,DomesticSocial
-DOMAIN,mam.netease.com,DomesticSocial
-DOMAIN,dt.netease.im,DomesticSocial
-DOMAIN,api.iplay.163.com,DomesticSocial
-DOMAIN,api.k.163.com,DomesticSocial
-DOMAIN,lbs.netease.im,DomesticSocial
-DOMAIN,wannos.127.net,DomesticSocial
-DOMAIN,ac.dun.163.com,DomesticSocial
-DOMAIN-SUFFIX,music.126.net,DomesticSocial
-DOMAIN-SUFFIX,laiqukankan.com,DomesticSocial
-DOMAIN-SUFFIX,music.ntes53.netease.com,DomesticSocial
-IP-CIDR,101.71.154.241/32,DomesticSocial
-IP-CIDR,103.126.92.132/32,DomesticSocial
-IP-CIDR,103.126.92.133/32,DomesticSocial
-IP-CIDR,112.13.119.18/32,DomesticSocial
-IP-CIDR,112.13.122.4/32,DomesticSocial
-IP-CIDR,115.236.118.34/32,DomesticSocial
-IP-CIDR,115.236.121.4/32,DomesticSocial
-IP-CIDR,45.254.48.1/32,DomesticSocial
-IP-CIDR,59.111.160.195/32,DomesticSocial
-IP-CIDR,59.111.19.33/32,DomesticSocial
-IP-CIDR,59.111.19.53/32,DomesticSocial
-DOMAIN-SUFFIX,music.163.com.163jiasu.com,DomesticSocial
-IP-CIDR,119.36.90.80/32,DomesticSocial
-IP-CIDR,111.48.137.146/32,DomesticSocial
-IP-CIDR,1.95.21.35/32,DomesticSocial
-IP-CIDR,47.100.127.239/32,DomesticSocial
 DOMAIN-SUFFIX,lofter.com,DomesticSocial
-DOMAIN,yaolu.yuedu.163.com,DomesticSocial
-DOMAIN-SUFFIX,lf127.net,DIRECT
-DOMAIN-SUFFIX,hls3-akm.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,hlsa-akm.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,hls1a-akm.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,hls3a-akm.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,vplay1a.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,vplay3a.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,ws-tct.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,akm-tct.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,tx2play1.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,tc-tct1.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,wsproxy.douyu.com,DIRECT
-DOMAIN-SUFFIX,danmuproxy.douyu.com,DIRECT
-DOMAIN-SUFFIX,img.douyucdn.cn,DIRECT
-DOMAIN-SUFFIX,douyucdn.cn,DomesticSocial
-DOMAIN-SUFFIX,douyu.com,DomesticSocial
-DOMAIN,bbs-api.mihoyo.com,DomesticSocial
-DOMAIN,bbs-api.miyoushe.com,DomesticSocial
+DOMAIN-SUFFIX,douyu.com,DomesticSocial # 主域必要代理（弹幕/评论）
+DOMAIN-SUFFIX,douyucdn.cn,DIRECT # CDN直连
+DOMAIN-SUFFIX,music.163.com,DomesticSocial
+DOMAIN-SUFFIX,music.126.net,DIRECT
+DOMAIN-SUFFIX,miui.com,DomesticSocial
+DOMAIN-SUFFIX,huya.com,DomesticSocial
+DOMAIN-SUFFIX,nga.cn,DomesticSocial
 DOMAIN-SUFFIX,douban.com,DomesticSocial
-IP-CIDR,49.233.242.15/32,DomesticSocial
-IP-CIDR,81.70.124.99/32,DomesticSocial
-IP-CIDR,81.70.125.19/32,DomesticSocial
-IP-CIDR,140.143.177.206/32,DomesticSocial
-DOMAIN,api.xiaoheihe.cn,DomesticSocial
-DOMAIN,y.qq.com,DIRECT
-DOMAIN-SUFFIX,y.qq.com,DomesticSocial
-DOMAIN,zonai.skland.com,DomesticSocial
-DOMAIN,china-img.soulapp.cn,DIRECT
-DOMAIN,img.soulapp.cn,DIRECT
+DOMAIN-SUFFIX,coolapk.com,DomesticSocial
+DOMAIN-SUFFIX,mihoyo.com,DomesticSocial
 DOMAIN-SUFFIX,soulapp.cn,DomesticSocial
-DOMAIN,druidv6.if.qidian.com,DomesticSocial
-DOMAIN,ptlogin6.qidian.com,DomesticSocial
-DOMAIN,api.wmpvp.com,DomesticSocial
-DOMAIN,bbs.mobileapi.hupu.com,DomesticSocial
-DOMAIN,cmt.ithome.com,DomesticSocial
+DOMAIN,img.soulapp.cn,DIRECT
+DOMAIN-SUFFIX,qidian.com,DomesticSocial
+DOMAIN-SUFFIX,hupu.com,DomesticSocial
+DOMAIN-SUFFIX,ithome.com,DomesticSocial
+#==================== IP-CIDR规则（保留原必要） ====================
+IP-CIDR,203.107.1.0/24,DomesticSocial
+IP-CIDR,180.76.76.0/24,DomesticSocial
+IP-CIDR,103.41.167.0/24,DomesticSocial
+#==================== 规则结束 ====================
