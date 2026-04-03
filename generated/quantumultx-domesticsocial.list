@@ -1,4 +1,30 @@
-#==================== 通用抖音KEYWORD（位置上报核心，保留加强） ====================
+#==================== 抖音精准分流规则 ====================
+DOMAIN,httpdns.douyin.com,REJECT
+DOMAIN,httpdns.snssdk.com,REJECT
+DOMAIN,httpdns.volcengineapi.com,REJECT
+DOMAIN,httpdns.c.bytedance.net,REJECT
+DOMAIN-KEYWORD,httpdns.c.byte,REJECT
+DOMAIN-SUFFIX,crash.snssdk.com,REJECT
+DOMAIN-SUFFIX,apm.douyin.com,REJECT
+DOMAIN-SUFFIX,douyinvod.com,DIRECT
+DOMAIN-SUFFIX,douyincdn.com,DIRECT
+DOMAIN-SUFFIX,douyinpic.com,DIRECT
+DOMAIN-SUFFIX,douyinstatic.com,DIRECT
+DOMAIN-SUFFIX,idouyinvod.com,DIRECT
+DOMAIN-SUFFIX,ixigua.com,DIRECT
+DOMAIN-SUFFIX,ixiguavideo.com,DIRECT
+DOMAIN-SUFFIX,pstatp.com,DIRECT
+DOMAIN-SUFFIX,vcdn.pstatp.com,DIRECT
+DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
+DOMAIN-SUFFIX,bytecdn.cn,DIRECT
+DOMAIN-SUFFIX,byteimg.com,DIRECT
+DOMAIN-SUFFIX,ibyteimg.com,DIRECT
+DOMAIN-SUFFIX,bdxcloud.com,DIRECT
+DOMAIN-KEYWORD,vvod,DIRECT
+DOMAIN-KEYWORD,v3-dy,DIRECT
+DOMAIN-KEYWORD,v6-dy,DIRECT
+DOMAIN-KEYWORD,v9-dy,DIRECT
+DOMAIN-KEYWORD,-vcdn-,DIRECT
 DOMAIN-KEYWORD,core-c-lq,DomesticSocial
 DOMAIN-KEYWORD,core-lq,DomesticSocial
 DOMAIN-KEYWORD,normal-c-lq,DomesticSocial
@@ -9,43 +35,20 @@ DOMAIN-KEYWORD,-normal-,DomesticSocial
 DOMAIN-KEYWORD,-core-,DomesticSocial
 DOMAIN-KEYWORD,-aweme-,DomesticSocial
 DOMAIN-KEYWORD,api-,DomesticSocial
-DOMAIN-KEYWORD,mon-,DomesticSocial
-DOMAIN-KEYWORD,zijie,DomesticSocial
-DOMAIN-KEYWORD,log,DomesticSocial
+DOMAIN-KEYWORD,log-,DomesticSocial
 DOMAIN-KEYWORD,verify,DomesticSocial
 DOMAIN-KEYWORD,lf-hl,DomesticSocial
-DOMAIN-KEYWORD,ies,DomesticSocial
 DOMAIN-KEYWORD,aweme-grpc,DomesticSocial
-#==================== 抖音规则（修复IP隐藏） ====================
-DOMAIN-SUFFIX,douyinvod.com,DIRECT # 视频CDN优先直连
-DOMAIN-SUFFIX,douyincdn.com,DIRECT
-DOMAIN-SUFFIX,douyinpic.com,DIRECT
-DOMAIN-SUFFIX,douyinstatic.com,DIRECT
-DOMAIN-SUFFIX,idouyinvod.com,DIRECT
-DOMAIN-SUFFIX,ixigua.com,DIRECT
-DOMAIN-SUFFIX,ixiguavideo.com,DIRECT
-DOMAIN-SUFFIX,pstatp.com,DIRECT
-DOMAIN-SUFFIX,ttlivecdn.com,DIRECT
-DOMAIN-SUFFIX,bytecdn.cn,DIRECT
-DOMAIN-SUFFIX,aweme.snssdk.com,DomesticSocial # 核心评论/上报
-DOMAIN-SUFFIX,api.amemv.com,DomesticSocial # 动态上报
-DOMAIN-SUFFIX,bytegecko.com,DomesticSocial # 搜索/动态
-DOMAIN-SUFFIX,sso.douyin.com,DomesticSocial # 登录/评论认证
-DOMAIN-SUFFIX,www.douyin.com,DomesticSocial # 网页评论
-DOMAIN-SUFFIX,apm.douyin.com,DomesticSocial # 反作弊
-DOMAIN-SUFFIX,arms-retcode.byteoversea.com,DomesticSocial # 外部检测
-DOMAIN-SUFFIX,zijieapi.com,DomesticSocial
-DOMAIN-SUFFIX,x-log.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,log.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,ies.douyin.com,DomesticSocial
-DOMAIN-SUFFIX,lf-hl.amemv.com,DomesticSocial
-DOMAIN-SUFFIX,lf-hl.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,verify.snssdk.com,DomesticSocial
-DOMAIN-SUFFIX,httpdns.c.byte,DomesticSocial # 防止DNS泄露
-DOMAIN,httpdns.douyin.com,REJECT
-DOMAIN-SUFFIX,snssdk.com,DomesticSocial # 恢复广义代理，确保覆盖
-DOMAIN-SUFFIX,amemv.com,DomesticSocial # 恢复广义
-DOMAIN-SUFFIX,douyin.com,DomesticSocial # 恢复广义，主域上报
+DOMAIN-KEYWORD,frontier,DomesticSocial # 关键：长连接推送服务，常用于静默验证IP
+DOMAIN-KEYWORD,zijieapi,DomesticSocial
+# --- 4. 广义主域兜底 (确保所有涉及账号的交互强制代理) ---
+DOMAIN-SUFFIX,amemv.com,DomesticSocial
+DOMAIN-SUFFIX,snssdk.com,DomesticSocial
+DOMAIN-SUFFIX,douyin.com,DomesticSocial
+DOMAIN-SUFFIX,bytedance.com,DomesticSocial
+DOMAIN-SUFFIX,bytedance.net,DomesticSocial
+DOMAIN-SUFFIX,volces.com,DomesticSocial # 火山引擎核心API (最新版大量使用)
+DOMAIN-SUFFIX,zjcdn.com,DomesticSocial
 #==================== Bilibili规则（修复IP隐藏 + 直播优化） ====================
 DOMAIN-SUFFIX,bilivideo.com,DIRECT # 视频/直播流CDN优先直连（速度关键）
 DOMAIN-SUFFIX,hdslb.com,DIRECT
