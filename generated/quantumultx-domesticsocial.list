@@ -75,12 +75,17 @@ DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
 DOMAIN-SUFFIX,bilibili.com,DomesticSocial
 
 #==================== 小红书最新规则（修复IP隐藏） ====================
+#==================== 小红书流量分流策略 ====================
+# --- 1. 视频/直播 CDN 直连（低延迟） ---
 DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT
 DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT
 DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT
 DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT
 DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT
 DOMAIN-SUFFIX,static.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,xhscdn.com,DIRECT
+
+# --- 2. 核心 App API 代理（隐藏 IP） ---
 DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial
@@ -92,6 +97,13 @@ DOMAIN-SUFFIX,log.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,verify.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,grpc.xiaohongshu.com,DomesticSocial
 DOMAIN-SUFFIX,aweme.xiaohongshu.com,DomesticSocial
+
+# --- 3. HTTPDNS 阻断（防止解析真实 IP） ---
+DOMAIN,httpdns.xiaohongshu.com,REJECT
+DOMAIN,httpdns.xhscdn.com,REJECT
+DOMAIN-KEYWORD,httpdns,REJECT
+
+# --- 4. 广义兜底，确保新域也走代理 ---
 DOMAIN-KEYWORD,xiaohongshu,DomesticSocial
 DOMAIN-SUFFIX,xiaohongshu.com,DomesticSocial
 
