@@ -1,52 +1,9 @@
-#==================== 全局 HTTPDNS 防泄露 (核心修复) ====================
-# 强制所有 App 降级使用系统 DNS，防止直连 IP 穿透分流规则
-DOMAIN,httpdns.xiaohongshu.com,REJECT
-DOMAIN,httpdns.alidns.com,REJECT
-DOMAIN,httpdns.aliyuncs.com,REJECT
+#==================== 抖音精准分流规则 ====================
 DOMAIN,httpdns.douyin.com,REJECT
 DOMAIN,httpdns.snssdk.com,REJECT
 DOMAIN,httpdns.volcengineapi.com,REJECT
-DOMAIN,httpdns.biliapi.net,REJECT
-DOMAIN,httpdns.baidu.com,REJECT
-DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
+DOMAIN,httpdns.c.bytedance.net,REJECT
 DOMAIN-KEYWORD,httpdns.c.byte,REJECT
-
-#==================== 小红书 (彻底修复 IP 泄露) ====================
-# 1. 拦截测速和性能监控（这些最容易偷偷上报真实 IP）
-DOMAIN,xy.xiaohongshu.com,REJECT 
-DOMAIN,apm.xiaohongshu.com,REJECT 
-DOMAIN,apm.xhscdn.com,REJECT
-DOMAIN,referee.xiaohongshu.com,REJECT
-
-# 2. CDN 流媒体优先直连 (改为精确 DOMAIN 或 KEYWORD，防止误伤 API)
-DOMAIN,ci.xiaohongshu.com,DIRECT
-DOMAIN,img.xiaohongshu.com,DIRECT
-DOMAIN,v.xiaohongshu.com,DIRECT
-DOMAIN,media.xiaohongshu.com,DIRECT
-DOMAIN,static.xiaohongshu.com,DIRECT
-DOMAIN-KEYWORD,sns-img-,DIRECT
-DOMAIN-KEYWORD,sns-video-,DIRECT
-
-# 3. 核心发帖/评论 API (强制代理隐藏 IP)
-DOMAIN,edith.xiaohongshu.com,DomesticSocial # 发帖评论最核心 API
-DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,www-api.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,log.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,verify.xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,grpc.xiaohongshu.com,DomesticSocial
-
-# 4. 广义主域兜底（确保未知新接口全部代理）
-DOMAIN-SUFFIX,xiaohongshu.com,DomesticSocial
-DOMAIN-SUFFIX,xiaohongshu.net,DomesticSocial
-DOMAIN-SUFFIX,xiaohongshunew.com,DomesticSocial
-DOMAIN-SUFFIX,xhslink.com,DomesticSocial
-DOMAIN-SUFFIX,xhscdn.com,DomesticSocial # 很多 API 挂在 CDN 域名下，兜底必须走代理
-
-#==================== 抖音精准分流 ====================
 DOMAIN-SUFFIX,crash.snssdk.com,REJECT
 DOMAIN-SUFFIX,apm.douyin.com,REJECT
 DOMAIN-SUFFIX,douyinvod.com,DIRECT
@@ -82,51 +39,75 @@ DOMAIN-KEYWORD,log-,DomesticSocial
 DOMAIN-KEYWORD,verify,DomesticSocial
 DOMAIN-KEYWORD,lf-hl,DomesticSocial
 DOMAIN-KEYWORD,aweme-grpc,DomesticSocial
-DOMAIN-KEYWORD,frontier,DomesticSocial 
+DOMAIN-KEYWORD,frontier,DomesticSocial
 DOMAIN-KEYWORD,zijieapi,DomesticSocial
 DOMAIN-SUFFIX,amemv.com,DomesticSocial
 DOMAIN-SUFFIX,snssdk.com,DomesticSocial
 DOMAIN-SUFFIX,douyin.com,DomesticSocial
 DOMAIN-SUFFIX,bytedance.com,DomesticSocial
 DOMAIN-SUFFIX,bytedance.net,DomesticSocial
-DOMAIN-SUFFIX,volces.com,DomesticSocial 
+DOMAIN-SUFFIX,volces.com,DomesticSocial
 DOMAIN-SUFFIX,zjcdn.com,DomesticSocial
 
-#==================== Bilibili 分流 ====================
-DOMAIN-SUFFIX,bilivideo.com,DIRECT 
+#==================== Bilibili规则（修复IP隐藏 + 直播优化） ====================
+DOMAIN-SUFFIX,bilivideo.com,DIRECT
 DOMAIN-SUFFIX,hdslb.com,DIRECT
 DOMAIN-SUFFIX,akamaized.net,DIRECT
 DOMAIN-SUFFIX,szbdyd.com,DIRECT
 DOMAIN-SUFFIX,upos-sz-mirrorhw.bilivideo.com,DIRECT
-DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net,DIRECT 
-DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,api.vc.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,api.live.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,live-trace.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial 
-DOMAIN-SUFFIX,apm.bilibili.com,REJECT # 建议改为 REJECT，防止反作弊探测真实 IP
-DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,REJECT # 阿里云监控也建议直接拦截
-DOMAIN-SUFFIX,cm.bilibili.com,DomesticSocial 
-DOMAIN-SUFFIX,biliapi.net,DomesticSocial 
+DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net,DIRECT
+DOMAIN-SUFFIX,app.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,api.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,api.vc.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,api.live.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,live-trace.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,passport.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,message.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,data.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,grpc.biliapi.net,DomesticSocial
+DOMAIN-SUFFIX,apm.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,arms-retcode.aliyuncs.com,DomesticSocial
+DOMAIN-SUFFIX,cm.bilibili.com,DomesticSocial
+DOMAIN-SUFFIX,biliapi.net,DomesticSocial
 DOMAIN-SUFFIX,biliapi.com,DomesticSocial
-DOMAIN-SUFFIX,bilibili.com,DomesticSocial 
+DOMAIN,httpdns.biliapi.net,REJECT
+DOMAIN-SUFFIX,bilihttpdns.biliapi.net,REJECT
+DOMAIN-SUFFIX,bilibili.com,DomesticSocial
 
-#==================== 其他 App ====================
+#==================== 小红书最新规则（修复IP隐藏） ====================
+DOMAIN-SUFFIX,ci.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,img.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,v.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,media.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,cdn.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,static.xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,api.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,api-hybrid.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,api-sns.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,sns.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,edittor.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,creator.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,www-api.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,log.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,verify.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,grpc.xiaohongshu.com,DomesticSocial
+DOMAIN-SUFFIX,aweme.xiaohongshu.com,DomesticSocial
+DOMAIN-KEYWORD,xiaohongshu,DomesticSocial
+DOMAIN-SUFFIX,xiaohongshu.com,DomesticSocial
+
+#==================== 其他App规则（精简+保留必要代理） ====================
 DOMAIN-SUFFIX,weibo.com,DomesticSocial
 DOMAIN-SUFFIX,weibo.cn,DomesticSocial
 DOMAIN-SUFFIX,weibocdn.com,DIRECT
 DOMAIN-SUFFIX,sinaimg.cn,DIRECT
 DOMAIN,tieba.baidu.com,DomesticSocial
-DOMAIN,hm.baidu.com,REJECT # 百度统计直接拦截
+DOMAIN,hm.baidu.com,DomesticSocial
+DOMAIN,httpdns.baidu.com,DomesticSocial
 DOMAIN-SUFFIX,zhihu.com,DomesticSocial
 DOMAIN-SUFFIX,toutiaoapi.com,DomesticSocial
 DOMAIN-SUFFIX,lofter.com,DomesticSocial
-DOMAIN-SUFFIX,douyu.com,DomesticSocial 
-DOMAIN-SUFFIX,douyucdn.cn,DIRECT 
+DOMAIN-SUFFIX,douyu.com,DomesticSocial
+DOMAIN-SUFFIX,douyucdn.cn,DIRECT
 DOMAIN-SUFFIX,music.163.com,DomesticSocial
 DOMAIN-SUFFIX,music.126.net,DIRECT
 DOMAIN-SUFFIX,miui.com,DomesticSocial
@@ -141,8 +122,7 @@ DOMAIN-SUFFIX,qidian.com,DomesticSocial
 DOMAIN-SUFFIX,hupu.com,DomesticSocial
 DOMAIN-SUFFIX,ithome.com,DomesticSocial
 
-#==================== IP-CIDR 底层防泄漏 ====================
-# 改为 REJECT 并加上 no-resolve，直接在 IP 层掐断 App 绕过 DNS 的直连测速企图
-IP-CIDR,203.107.1.0/24,REJECT,no-resolve
-IP-CIDR,180.76.76.0/24,REJECT,no-resolve
-IP-CIDR,103.41.167.0/24,REJECT,no-resolve
+#==================== IP-CIDR规则（保留必要） ====================
+IP-CIDR,203.107.1.0/24,DomesticSocial
+IP-CIDR,180.76.76.0/24,DomesticSocial
+IP-CIDR,103.41.167.0/24,DomesticSocial
